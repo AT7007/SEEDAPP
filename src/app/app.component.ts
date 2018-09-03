@@ -16,13 +16,19 @@ export class AppComponent implements OnInit {
     'Timestamp': 0
   };
 
+  steps = 0;
+
   ngOnInit(): void {
+
     // document.addEventListener('deviceready', this.onDeviceReady, false);
     this.onDeviceReady();
 
   }
 
   onDeviceReady() {
+    if(window['pedometer']) {
+      window['pedometer'].isStepCountingAvailable(this.pedometerSuccessCallback, this.onError);
+    }
     console.log('navigator.geolocation works well');
     navigator.geolocation.watchPosition((position) => {
       console.log(this);
@@ -36,6 +42,16 @@ export class AppComponent implements OnInit {
     },
       this.onError,
       { timeout: 30000, enableHighAccuracy: true });
+  }
+
+  pedometerSuccessCallback(pedometerData) {
+        // pedometerData.startDate; -> ms since 1970
+    // pedometerData.endDate; -> ms since 1970
+    // pedometerData.numberOfSteps;
+    // pedometerData.distance;
+    // pedometerData.floorsAscended;
+    // pedometerData.floorsDescended;
+    this.steps = pedometerData.numberOfSteps;
   }
 
   // onSuccess Callback

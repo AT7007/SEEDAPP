@@ -12,6 +12,9 @@
     },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.wackobros.chatbot"
+    },
+    "cordova-plugin-pedometer": {
+      "PACKAGE_NAME": "com.wackobros.chatbot"
     }
   },
   "dependent_plugins": {}

@@ -13,13 +13,22 @@ module.exports = [
     "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
     "pluginId": "cordova-plugin-geolocation",
     "runs": true
+  },
+  {
+    "id": "cordova-plugin-pedometer.Pedometer",
+    "file": "plugins/cordova-plugin-pedometer/www/pedometer.js",
+    "pluginId": "cordova-plugin-pedometer",
+    "clobbers": [
+      "pedometer"
+    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova-plugin-geolocation": "4.0.1"
+  "cordova-plugin-geolocation": "4.0.1",
+  "cordova-plugin-pedometer": "0.4.1"
 };
 // BOTTOM OF METADATA
 });

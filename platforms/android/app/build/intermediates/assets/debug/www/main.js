@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  Latitude: {{para.Latitude}}\n</p>\n<p>\n  Longitude: {{para.Longitude}}\n</p>\n<p>\n  Altitude: {{para.Altitude}}\n</p>\n<p>\n  Accuracy: {{para.Accuracy}}\n</p>\n<p>\n  Heading: {{para.Heading}}\n</p>\n<p>\n  Speed: {{para.Speed}}\n</p>\n<p>\n  Timestamp: {{para.Timestamp}}\n</p>\n"
+module.exports = "<p>\r\n  Latitude: {{para.Latitude}}\r\n</p>\r\n<p>\r\n  Longitude: {{para.Longitude}}\r\n</p>\r\n<p>\r\n  Altitude: {{para.Altitude}}\r\n</p>\r\n<p>\r\n  Accuracy: {{para.Accuracy}}\r\n</p>\r\n<p>\r\n  Heading: {{para.Heading}}\r\n</p>\r\n<p>\r\n  Speed: {{para.Speed}}\r\n</p>\r\n<p>\r\n  Timestamp: {{para.Timestamp}}\r\n</p>\r\n<p>\r\n  Number Of steps: {{steps}}\r\n</p>\r\n"
 
 /***/ }),
 
@@ -74,6 +74,7 @@ var AppComponent = /** @class */ (function () {
             'Speed': 0,
             'Timestamp': 0
         };
+        this.steps = 0;
     }
     AppComponent.prototype.ngOnInit = function () {
         // document.addEventListener('deviceready', this.onDeviceReady, false);
@@ -81,6 +82,9 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.onDeviceReady = function () {
         var _this = this;
+        if (window['pedometer']) {
+            window['pedometer'].isStepCountingAvailable(this.pedometerSuccessCallback, this.onError);
+        }
         console.log('navigator.geolocation works well');
         navigator.geolocation.watchPosition(function (position) {
             console.log(_this);
@@ -92,6 +96,15 @@ var AppComponent = /** @class */ (function () {
             _this.para.Speed = position.coords.speed;
             _this.para.Timestamp = position.timestamp;
         }, this.onError, { timeout: 30000, enableHighAccuracy: true });
+    };
+    AppComponent.prototype.pedometerSuccessCallback = function (pedometerData) {
+        // pedometerData.startDate; -> ms since 1970
+        // pedometerData.endDate; -> ms since 1970
+        // pedometerData.numberOfSteps;
+        // pedometerData.distance;
+        // pedometerData.floorsAscended;
+        // pedometerData.floorsDescended;
+        this.steps = pedometerData.numberOfSteps;
     };
     // onSuccess Callback
     // This method accepts a Position object, which contains the
@@ -231,7 +244,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/n/Documents/test2/chatbot/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! F:\Project\SEEDAPP\SEEDAPP\src\main.ts */"./src/main.ts");
 
 
 /***/ })

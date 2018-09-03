@@ -7,6 +7,9 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
+    <feature name="Pedometer">
+        <param name="android-package" value="org.apache.cordova.pedometer.PedoListener" />
+    </feature>
     <name>Chatbot</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
